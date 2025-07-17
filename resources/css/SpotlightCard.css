@@ -1,0 +1,50 @@
+ .card-spotlight {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.8rem; /* 24px */
+    padding: 2rem; /* 32px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Ensures a minimum size */
+    /* Default variables are not strictly needed here as JS sets them on move, but can be good for initial state */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --spotlight-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .card-spotlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .card-spotlight:hover::before {
+    opacity: 1; /* Changed from 0.6 to 1 for a more noticeable effect */
+  }
+
+  .card-spotlight-content {
+    position: relative;
+    z-index: 2; /* Ensures content is above the spotlight effect */
+    text-align: center;
+  }
+
+  .card-spotlight-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the card without stretching */
+    z-index: 0; /* Places the image behind the content and spotlight */
+    border-radius: 1.5rem; /* Matches the card's border radius */
+  }
