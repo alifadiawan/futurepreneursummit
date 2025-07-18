@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Events extends Model
 {
     protected $table = 'event';
+
+    protected $guarded = [];
 }
     

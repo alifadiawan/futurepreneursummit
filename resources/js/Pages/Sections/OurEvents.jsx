@@ -2,7 +2,11 @@ import React from 'react'
 import CarouselCard from '../Components/CarouselCard'
 import { div } from 'framer-motion/client';
 import bgbg from '../../../../public/bg-konser.png';
+import bgbg2 from '../../../../public/bg-purple-2.jpg';
+
 import { motion } from 'framer-motion';
+
+import bandung from '../../../../public/bandung.webp';
 
 const OurEvents = () => {
 
@@ -19,10 +23,10 @@ const OurEvents = () => {
     {
       id: 2,
       location: 'Purwokerto',
-      date: '10 Desember',
+      date: '10 Desember 2023',
       title: 'Future Entrepreneur Summit',
       subtitle: 'The Journey of the Gen Z Futurepreneur',
-      imageUrl: 'https://futurepreneursummit.com/storage/SURABAYA.jpg',
+      imageUrl: bandung,
       featured_guest_star: 'Fiki Naki',
     },
     {
@@ -53,7 +57,7 @@ const OurEvents = () => {
       className="py-16 md:py-32 relative overflow-hidden"
       id="aboutus"
       style={{
-        backgroundImage: `url(${bgbg})`,
+        backgroundImage: `url(${bgbg2})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed' // Optional: for a parallax effect

@@ -1,25 +1,30 @@
 import React from 'react'
-import bgabout1 from '../../../../public/bg-konser.png'
+import bgplaceholder from '../../../../public/Logo-FEST-LIGHT.png'
 
 import { motion } from "framer-motion"
 import SpotlightCard from '../Components/SpotlightCard';
 import { Link } from '@inertiajs/react';
 import PixelTransition from '../Components/PixelTransition';
 
+import grandsummit from '../../../../public/programs/grand-summit.png';
+import nationalcompetition from '../../../../public/programs/national_competition.png';
+import webminar from '../../../../public/programs/webminar-logo.png';
+
+
 const RangkaianAcaraSection = () => {
   return (
     <section
-      className="py-16 md:py-32 relative overflow-hidden"
+      className="py-16 md:py-22  relative overflow-hidden"
       id="aboutus"
-      style={{
-        backgroundImage: `url(${bgabout1})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed' // Optional: for a parallax effect
-      }}
+    // style={{
+    //   backgroundImage: `url(${bgabout1})`,
+    //   backgroundSize: 'cover',
+    //   backgroundPosition: 'center',
+    //   backgroundAttachment: 'fixed' // Optional: for a parallax effect
+    // }}
     >
       {/* THEME CHANGE: Added a semi-transparent white overlay to ensure text readability over the background image. */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-white"></div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         {/* Section Title */}
@@ -33,7 +38,7 @@ const RangkaianAcaraSection = () => {
           <div className="inline-block">
             <motion.h2
               // THEME CHANGE: Text is now dark for readability.
-              className="text-2xl md:text-3xl font-black text-white tracking-wide"
+              className="text-2xl md:text-3xl font-black text-black tracking-wide"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -51,141 +56,35 @@ const RangkaianAcaraSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 justify-center gap-3 w-full">
           <PixelTransition
-            firstContent={
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                alt="default pixel transition content, a cat!"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
-                }}
-              >
-                <p>Futurepreneur Competition</p>
-                <Link className="p-2 bg-orange-400 rounded-lg">Learn more</Link>
-              </div>
-            }
-            gridSize={12}
-            pixelColor='#ffffff'
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
+            imageUrl={nationalcompetition}
+            title="Futurepreneur National Competition"
+            ctaText="More"
+            ctaLink="#"
           />
           <PixelTransition
-            firstContent={
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                alt="default pixel transition content, a cat!"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
-                }}
-              >
-                <p>Futurepreneur Competition</p>
-                <Link className="p-2 bg-orange-400 rounded-lg">Learn more</Link>
-              </div>
-            }
-            gridSize={12}
-            pixelColor='#ffffff'
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
+            imageUrl={grandsummit}
+            title="Futurepreneur Grand Summit Seminar"
+            ctaText="More"
+            ctaLink="#"
           />
           <PixelTransition
-            firstContent={
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                alt="default pixel transition content, a cat!"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
-                }}
-              >
-                <p>Futurepreneur Competition</p>
-                <Link className="p-2 bg-orange-400 rounded-lg">Learn more</Link>
-              </div>
-            }
-            gridSize={12}
-            pixelColor='#ffffff'
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
+            imageUrl={webminar}
+            title="Futurepreneur Online Webinar Soft Skill"
+            ctaText="More"
+            ctaLink="#"
           />
           <PixelTransition
-            firstContent={
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                alt="default pixel transition content, a cat!"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
-                }}
-              >
-                <p>Futurepreneur Competition</p>
-                <Link className="p-2 bg-orange-400 rounded-lg">Learn more</Link>
-              </div>
-            }
-            gridSize={12}
-            pixelColor='#ffffff'
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
+            imageUrl={bgplaceholder}
+            title="Futurepreneur Bootcamp Soft Skill Training"
+            ctaText="More"
+            ctaLink="#"
           />
           <PixelTransition
-            firstContent={
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                alt="default pixel transition content, a cat!"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111"
-                }}
-              >
-                <p>Futurepreneur Competition</p>
-                <Link className="p-2 bg-orange-400 rounded-lg">Learn more</Link>
-              </div>
-            }
-            gridSize={12}
-            pixelColor='#ffffff'
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
+            imageUrl={bgplaceholder}
+            title="Futurepreneur International Program"
+            ctaText="More"
+            ctaLink="#"
           />
-
         </div>
 
         {/* <div className="flex flex-row gap-3">

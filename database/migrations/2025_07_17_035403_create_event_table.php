@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('imageUrl')->nullable();
             $table->string('imagePath')->nullable();
             $table->string('featured_guest_star');
-            $table->enum('status', ['upcoming', 'draft', 'publish'])->default('upcoming');
+            $table->string('status')->default('upcoming');
             $table->timestamps();
         });
     }

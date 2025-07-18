@@ -1,125 +1,36 @@
-import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import '../../../css/PixelTransition.css';
+import React from 'react'
 
-function PixelTransition({
-  firstContent,
-  secondContent,
-  gridSize = 7,
-  pixelColor = 'currentColor',
-  animationStepDuration = 0.3,
-  className = '',
-  style = {},
-  aspectRatio = '100%',
-}) {
-  const containerRef = useRef(null);
-  const pixelGridRef = useRef(null);
-  const activeRef = useRef(null);
-  const delayedCallRef = useRef(null);
-
-  const [isActive, setIsActive] = useState(false);
-
-  const isTouchDevice =
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia('(pointer: coarse)').matches;
-
-  useEffect(() => {
-    const pixelGridEl = pixelGridRef.current;
-    if (!pixelGridEl) return;
-
-    pixelGridEl.innerHTML = '';
-
-    for (let row = 0; row < gridSize; row++) {
-      for (let col = 0; col < gridSize; col++) {
-        const pixel = document.createElement('div');
-        pixel.classList.add('pixelated-image-card__pixel');
-        pixel.style.backgroundColor = pixelColor;
-
-        const size = 100 / gridSize;
-        pixel.style.width = `${size}%`;
-        pixel.style.height = `${size}%`;
-        pixel.style.left = `${col * size}%`;
-        pixel.style.top = `${row * size}%`;
-        pixelGridEl.appendChild(pixel);
-      }
-    }
-  }, [gridSize, pixelColor]);
-
-  const animatePixels = (activate) => {
-    setIsActive(activate);
-
-    const pixelGridEl = pixelGridRef.current;
-    const activeEl = activeRef.current;
-    if (!pixelGridEl || !activeEl) return;
-
-    const pixels = pixelGridEl.querySelectorAll('.pixelated-image-card__pixel');
-    if (!pixels.length) return;
-
-    gsap.killTweensOf(pixels);
-    if (delayedCallRef.current) {
-      delayedCallRef.current.kill();
-    }
-
-    gsap.set(pixels, { display: 'none' });
-
-    const totalPixels = pixels.length;
-    const staggerDuration = animationStepDuration / totalPixels;
-
-    gsap.to(pixels, {
-      display: 'block',
-      duration: 0,
-      stagger: {
-        each: staggerDuration,
-        from: 'random'
-      }
-    });
-
-    delayedCallRef.current = gsap.delayedCall(animationStepDuration, () => {
-      activeEl.style.display = activate ? 'block' : 'none';
-      activeEl.style.pointerEvents = activate ? 'none' : '';
-    });
-
-    gsap.to(pixels, {
-      display: 'none',
-      duration: 0,
-      delay: animationStepDuration,
-      stagger: {
-        each: staggerDuration,
-        from: 'random'
-      }
-    });
-  };
-
-  const handleMouseEnter = () => {
-    if (!isActive) animatePixels(true);
-  };
-  const handleMouseLeave = () => {
-    if (isActive) animatePixels(false);
-  };
-  const handleClick = () => {
-    animatePixels(!isActive);
-  };
-
+const PixelTransition = ({ imageUrl, title, ctaText, ctaLink }) => {
   return (
-    <div
-      ref={containerRef}
-      className={`pixelated-image-card ${className}`}
-      style={style}
-      onMouseEnter={!isTouchDevice ? handleMouseEnter : undefined}
-      onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
-      onClick={isTouchDevice ? handleClick : undefined}
-    >
-      <div style={{ paddingTop: aspectRatio }} />
-      <div className="pixelated-image-card__default">
-        {firstContent}
+    <div className="max-w-sm mx-auto overflow-hidden rounded-2xl border shadow-lg border-purple-200">
+      {/* 1. Image */}
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-44 object-contain"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = 'https://placehold.co/600x400/000000/FFFFFF?text=Image+Not+Found';
+        }}
+      />
+
+      {/* Card Content */}
+      <div className="p-6 text-center">
+        {/* 2. Title */}
+        <h2 className="text-2xl font-bold text-black mb-4">
+          {title}
+        </h2>
+
+        {/* 3. CTA Button */}
+        <a
+          href={ctaLink}
+          className="inline-block bg-purple-500 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
+        >
+          {ctaText}
+        </a>
       </div>
-      <div className="pixelated-image-card__active" ref={activeRef}>
-        {secondContent}
-      </div>
-      <div className="pixelated-image-card__pixels" ref={pixelGridRef} />
     </div>
-  );
+  )
 }
 
-export default PixelTransition;
+export default PixelTransition

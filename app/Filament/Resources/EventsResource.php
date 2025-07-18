@@ -23,7 +23,19 @@ class EventsResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')->required(),
+                Forms\Components\TextInput::make('location')->required(),
+                Forms\Components\DatePicker::make('date')->required(),
+                Forms\Components\TextInput::make('subtitle'),
+                Forms\Components\TextInput::make('imageUrl'),
+                Forms\Components\FileUpload::make('imagePath'),
+                Forms\Components\TextInput::make('featured_guest_star'),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'Upcoming' => 'Upcoming',
+                        'Draft' => 'Draft',
+                        'Published' => 'Published',
+                    ])->required()
             ]);
     }
 
@@ -31,13 +43,24 @@ class EventsResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')->searchable(),
+                Tables\Columns\TextColumn::make('location')->searchable(),
+                Tables\Columns\TextColumn::make('date')->searchable(),
+                Tables\Columns\ImageColumn::make('imagePath'),
+                Tables\Columns\IconColumn::make('status')
+                    ->color(fn(string $state): string => match ($state) {
+                        'Upcoming' => 'info',
+                        'Draft' => 'warning',
+                        'Published' => 'success',
+                        default => 'gray',
+                    }),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

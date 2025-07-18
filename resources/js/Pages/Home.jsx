@@ -12,6 +12,8 @@ import OurEvents from './Sections/OurEvents';
 
 import LogoSlider from './Components/LogoSlider';
 import VideoBackground from './Components/VideoBackground';
+import PortfolioSection from './Sections/PortfolioSection';
+import FuturecompetitionSection from './Sections/FuturecompetitionSection';
 
 const Home = () => {
   return (
@@ -75,6 +77,12 @@ const Home = () => {
       {/* our events */}
       <OurEvents />
 
+      {/* National Competition */}
+      <FuturecompetitionSection />
+
+      {/* portfolio */}
+      <PortfolioSection />
+      
     </Guest>
   )
 }

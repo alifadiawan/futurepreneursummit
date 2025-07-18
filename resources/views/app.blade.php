@@ -13,4 +13,32 @@
     @inertia
 </body>
 
+<script>
+    let velocity = 0;
+    let isTicking = false;
+
+    window.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        velocity += e.deltaY * 0.2; // sensitivity multiplier
+        if (!isTicking) {
+            requestAnimationFrame(updateScroll);
+            isTicking = true;
+        }
+    }, { passive: false });
+
+    function updateScroll() {
+        window.scrollBy(0, velocity);
+        velocity *= 0.9; // friction (simulate momentum slowdown)
+
+        if (Math.abs(velocity) > 0.1) {
+            requestAnimationFrame(updateScroll);
+        } else {
+            velocity = 0;
+            isTicking = false;
+        }
+    }
+</script>
+
+
+
 </html>

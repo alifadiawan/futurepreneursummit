@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({ isDark = false }) => {
     const [isOpen, setIsOpen] = useState(false);
+    
+    // Define text color based on isDark prop
+    const textColor = isDark ? "text-gray-900" : "text-white";
+    const hoverColor = isDark ? "hover:text-gray-600" : "hover:text-gray-300";
 
     // Animation variants for the main navbar container
     const navVariants = {
@@ -78,18 +82,18 @@ const Navbar = () => {
                             visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } }
                         }}
                     >
-                        <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Home</motion.a>
-                        <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>What We Do</motion.a>
-                        <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Latest Event</motion.a>
-                        <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Career</motion.a>
-                        <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Contact</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Home</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>What We Do</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Latest Event</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Career</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Contact</motion.a>
                     </motion.div>
 
                     {/* Mobile Hamburger Button */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-white focus:outline-none"
+                            className={`${textColor} focus:outline-none`}
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 {isOpen ? (
@@ -113,11 +117,11 @@ const Navbar = () => {
                             animate="visible"
                             exit="hidden"
                         >
-                            <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Home</motion.a>
-                            <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>What We Do</motion.a>
-                            <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Latest Event</motion.a>
-                            <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Career</motion.a>
-                            <motion.a href="#" className="text-white  hover:text-gray-300" variants={menuItemVariants}>Contact</motion.a>
+                            <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Home</motion.a>
+                            <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>What We Do</motion.a>
+                            <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Latest Event</motion.a>
+                            <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Career</motion.a>
+                            <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Contact</motion.a>
                         </motion.div>
                     )}
                 </AnimatePresence>

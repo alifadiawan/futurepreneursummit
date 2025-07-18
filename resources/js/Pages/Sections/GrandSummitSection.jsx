@@ -1,16 +1,13 @@
 import React from 'react';
-import bg from '../../../../public/5185208.jpg';
-
-// You can replace these placeholder URLs with your actual image URLs.
-const BG_IMAGE_URL = bg ;
-const MAIN_IMAGE_URL = "https://placehold.co/1200x600/FFCCBC/424242?text=Main+Event+Highlight";
+import BG_IMAGE_URL from '../../../../public/5185208.jpg';
+import MAIN_IMAGE_URL from '../../../../public/programs/grand-summit.png';
 
 // Helper component for individual grid items to keep the main component clean.
 const GridItem = ({ imageUrl, title, text }) => (
-  <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-    <img 
-      src={imageUrl} 
-      alt={title} 
+  <div className="rounded-2xl bg-white shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+    <img
+      src={imageUrl}
+      alt={title}
       className="w-full h-40 object-cover"
       onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x300/FFCCBC/424242?text=Image+Error'; }}
     />
@@ -33,18 +30,18 @@ const GrandSummitSection = () => {
   ];
 
   return (
-    <div 
-      className="min-h-screen w-full bg-cover bg-center font-sans" 
+    <div
+      className="min-h-screen w-full bg-cover bg-center font-sans"
       style={{ backgroundImage: `url(${BG_IMAGE_URL})` }}
     >
       <div className="min-h-screen w-full flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
-        
+
 
         {/* Main Image Placeholder */}
-        <div className="w-full max-w-2xl my-12 rounded-xl shadow-2xl overflow-hidden">
-          <img 
-            src={MAIN_IMAGE_URL} 
-            alt="Grand Summit main visual" 
+        <div className="w-full max-w-2xl my-12 rounded-xl overflow-hidden">
+          <img
+            src={MAIN_IMAGE_URL}
+            alt="Grand Summit main visual"
             className="w-full h-auto object-cover"
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1200x600/FFCCBC/424242?text=Image+Not+Found'; }}
           />
@@ -54,8 +51,8 @@ const GrandSummitSection = () => {
         <div className="w-full max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
             {gridData.map(item => (
-              <GridItem 
-                key={item.id} 
+              <GridItem
+                key={item.id}
                 imageUrl={item.imageUrl}
                 title={item.title}
                 text={item.text}
