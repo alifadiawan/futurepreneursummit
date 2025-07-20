@@ -14,6 +14,8 @@ import LogoSlider from './Components/LogoSlider';
 import VideoBackground from './Components/VideoBackground';
 import PortfolioSection from './Sections/PortfolioSection';
 import FuturecompetitionSection from './Sections/FuturecompetitionSection';
+import SponsorsSection from './Sections/SponsorsSection';
+import OrganizationsSection from './Sections/OrganizationsSection';
 
 const Home = () => {
   return (
@@ -74,6 +76,9 @@ const Home = () => {
       {/* Grand Summit */}
       <GrandSummitSection />
 
+      {/* Sponsors */}
+      <SponsorsSection />
+
       {/* our events */}
       <OurEvents />
 
@@ -82,7 +87,12 @@ const Home = () => {
 
       {/* portfolio */}
       <PortfolioSection />
-      
+
+      {/* Organization  */}
+      <OrganizationsSection />
+
+
+
     </Guest>
   )
 }

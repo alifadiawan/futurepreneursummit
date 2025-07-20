@@ -9,6 +9,7 @@ import bgbg2 from '../../../../public/bg-purple-2.jpg'
 import bgabout1 from '../../../../public/bg-about.jpg'
 import bgabout2 from '../../../../public/about-2.jpeg'
 import bgabout3 from '../../../../public/bg-about-3.webp'
+import bgabout4 from '../../../../public/YK-160.jpg'
 
 
 const AboutUsSection = () => {
@@ -70,6 +71,7 @@ const AboutUsSection = () => {
                             {/* THEME CHANGE: Removed dark 'glow' div, replaced with a direct shadow on the image for a cleaner light theme look. */}
                             <motion.img
                                 src={bgabout2}
+                                loading='lazy'
                                 alt="FES Event Highlight"
                                 className="relative w-full h-80 object-cover rounded-2xl shadow-2xl border border-gray-200"
                                 whileHover={{ scale: 1.02, y: -5, boxShadow: "0px 20px 40px rgba(0,0,0,0.1)" }}
@@ -88,6 +90,7 @@ const AboutUsSection = () => {
                             >
                                 <motion.img
                                     src={bgabout3}
+                                    loading='lazy'
                                     alt="Futurepreneursimmit X Kapal Api"
                                     className="relative w-full h-48 object-cover rounded-xl shadow-xl border border-gray-200"
                                     whileHover={{ scale: 1.05, boxShadow: "0px 15px 30px rgba(0,0,0,0.1)" }}
@@ -102,7 +105,8 @@ const AboutUsSection = () => {
                                 className="relative group"
                             >
                                 <motion.img
-                                    src="foto-2.jpeg"
+                                    src={bgabout4}
+                                    loading='lazy'
                                     alt="Team Collaboration"
                                     className="relative w-full h-48 object-cover rounded-xl shadow-xl border border-gray-200"
                                     whileHover={{ scale: 1.05, boxShadow: "0px 15px 30px rgba(0,0,0,0.1)" }}

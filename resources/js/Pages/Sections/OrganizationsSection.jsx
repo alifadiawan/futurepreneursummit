@@ -1,19 +1,15 @@
 import React from 'react'
-import bgplaceholder from '../../../../public/Logo-FEST-LIGHT.png'
-
 import { motion } from "framer-motion"
-import SpotlightCard from '../Components/SpotlightCard';
-import { Link } from '@inertiajs/react';
 import PixelTransition from '../Components/PixelTransition';
 
-import grandsummit from '../../../../public/rangkaian_acara/1.webp';
-import nationalcompetition from '../../../../public/rangkaian_acara/2.webp';
-import webminar from '../../../../public/rangkaian_acara/3.webp';
-import bootcamp from '../../../../public/rangkaian_acara/4.webp';
-import internationalprogram from '../../../../public/rangkaian_acara/5.webp';
+import golda from '../../../../public/organizations/unair.png';
+import wardah from '../../../../public/organizations/its.png';
+import pandalovely from '../../../../public/organizations/uinsa.png';
+import miesedap from '../../../../public/organizations/upn.png';
+import kahf from '../../../../public/organizations/its.png';
+import bening from '../../../../public/organizations/umm.png';
 
-
-const RangkaianAcaraSection = () => {
+const OrganizationsSection = () => {
   return (
     <section
       className="py-16 md:py-22  relative overflow-hidden"
@@ -44,7 +40,7 @@ const RangkaianAcaraSection = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              Rangkaian Acara
+              Our Organizations Partnership
             </motion.h2>
             <motion.div
               className="h-1 w-24 bg-gradient-to-r from-amber-400 to-[#FF7700] rounded-full mx-auto mt-2"
@@ -56,33 +52,39 @@ const RangkaianAcaraSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 justify-center gap-3 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-4 justify-center gap-3 w-full">
           <PixelTransition
-            imageUrl={grandsummit}
+            imageUrl={golda}
             title="Futurepreneur National Competition"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={nationalcompetition}
+            imageUrl={wardah}
             title="Futurepreneur Grand Summit Seminar"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={webminar}
+            imageUrl={pandalovely}
             title="Futurepreneur Online Webinar Soft Skill"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={bootcamp}
+            imageUrl={kahf}
             title="Futurepreneur Bootcamp Soft Skill Training"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={internationalprogram}
+            imageUrl={miesedap}
+            title="Futurepreneur International Program"
+            ctaText="More"
+            ctaLink="#"
+          />
+          <PixelTransition
+            imageUrl={bening}
             title="Futurepreneur International Program"
             ctaText="More"
             ctaLink="#"
@@ -143,4 +145,4 @@ const RangkaianAcaraSection = () => {
   )
 }
 
-export default RangkaianAcaraSection
+export default OrganizationsSection

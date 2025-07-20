@@ -83,9 +83,9 @@ const Navbar = ({ isDark = false }) => {
                         }}
                     >
                         <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Home</motion.a>
-                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>What We Do</motion.a>
-                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Latest Event</motion.a>
-                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Career</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>About Us</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Our Events</motion.a>
+                        <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Portfolio</motion.a>
                         <motion.a href="#" className={`${textColor} ${hoverColor}`} variants={menuItemVariants}>Contact</motion.a>
                     </motion.div>
 

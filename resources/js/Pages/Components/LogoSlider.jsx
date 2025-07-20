@@ -77,6 +77,7 @@ const LogoSlider = () => {
                                 <div key={`logo-duplicate-${index}`} className="mx-12 flex-shrink-0">
                                     <img
                                         className="h-24 w-auto object-contain"
+                                        loading='lazy'
                                         src={logo.src}
                                         alt={logo.alt}
                                     />

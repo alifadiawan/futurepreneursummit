@@ -19,49 +19,46 @@ const ArrowRight = () => (
 const portfolioData = [
     {
         id: 1,
-        title: 'Eco-Friendly Marketplace',
-        description: 'A platform for discovering and purchasing sustainable and eco-friendly products from various sellers.',
-        imageUrl: 'https://placehold.co/600x400/22c55e/ffffff?text=Project+1',
-        tags: ['React', 'Node.js', 'Tailwind CSS', 'Stripe'],
+        title: 'FUTURE ENTREPRENEUR SUMMIT SURABAYA 2025',
+        youtubeUrl: 'https://www.youtube.com/embed/QZycyxPV9bo?si=W1pZTzDVFZE917y3',
+        tags: ['Surabaya', 'Kapal Api', 'Jeromi Polin'],
     },
     {
         id: 2,
-        title: 'GreenThumb Garden Planner',
-        description: 'A tool for garden enthusiasts to plan their garden layout, track plant growth, and get reminders.',
-        imageUrl: 'https://placehold.co/600x400/22c55e/ffffff?text=Project+2',
+        title: 'FUTURE ENTREPRENEUR SUMMIT JEMBER 2024',
+        youtubeUrl: 'https://www.youtube.com/embed/5eaj50YPD8Y?si=yZw6--qU5AdsxuFC',
         tags: ['Next.js', 'Firebase', 'D3.js', 'Framer Motion'],
     },
     {
         id: 3,
         title: 'Nature Photography Blog',
-        description: 'A visually-driven blog showcasing nature photography with a clean, minimalist reading experience.',
-        imageUrl: 'https://placehold.co/600x400/22c55e/ffffff?text=Project+3',
+        youtubeUrl: 'https://www.youtube.com/embed/ysz5S6PUM-U',
         tags: ['Gatsby', 'GraphQL', 'Contentful', 'Styled-Components'],
     },
 ];
+
 
 // Card component for individual portfolio items
 const PortfolioCard = ({ project }) => {
     return (
         <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-in-out border border-gray-100">
-            <img
-                className="w-full h-48 object-cover"
-                src={project.imageUrl}
-                alt={`Screenshot of ${project.title}`}
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f87171/ffffff?text=Image+Failed'; }}
-            />
-            <div className="p-6">
+            <div className="w-full h-48 overflow-hidden">
+                <iframe
+                    className="w-full h-full"
+                    src={project.youtubeUrl}
+                    title={`YouTube video of ${project.title}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                ></iframe>
+            </div>
+            <div className="p-4">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
                 <p className="text-gray-600 text-base mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                        <span key={tag} className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-full">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
+                
             </div>
         </div>
+
     );
 };
 
