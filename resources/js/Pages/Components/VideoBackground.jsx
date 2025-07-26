@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import video from '../../../../public/bg-video.mp4'
 import logo from '../../../../public/Logo-FEST-LIGHT.png';
 import React from 'react'
 

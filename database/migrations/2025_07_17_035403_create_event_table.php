@@ -17,10 +17,12 @@ return new class extends Migration {
             $table->string('location');
             $table->date('date');
             $table->string('time');
+            $table->string('external_link')->nullable();
             $table->string('subtitle')->nullable();
             $table->text('description');
             $table->string('imagePath')->nullable();
             $table->json('highlights')->nullable();
+            $table->json('speakers')->nullable();
             $table->string('status')->default('upcoming');
             $table->timestamps();
         });

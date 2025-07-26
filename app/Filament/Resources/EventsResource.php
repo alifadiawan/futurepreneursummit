@@ -65,14 +65,35 @@ class EventsResource extends Resource
                 TextInput::make('subtitle')
                     ->maxLength(255),
 
+                Repeater::make('speakers')
+                    ->label('Event Speakers')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->label('Name'),
+                        TextInput::make('title')
+                            ->required()
+                            ->label('Title'),
+                        FileUpload::make('image')
+                            ->label('Image')
+                            ->directory('speakers')
+                            ->image()
+                            ->imageEditor()
+                            ->nullable(),
+                    ])
+                    ->addActionLabel('Add Speaker')
+                    ->collapsible()
+                    ->grid(2)
+                    ->columnSpanFull(),
+
                 RichEditor::make('description')
                     ->required(),
 
                 FileUpload::make('imagePath')
-                    ->directory('events') // optional: set directory
+                    ->directory('events_speakers') // optional: set directory
                     ->image()
                     ->imageEditor() // optional: allows basic cropping, etc.
-                    ->maxSize(2048), // optional: 2MB limit
+                    ->maxSize(5000),
 
                 Repeater::make('highlights')
                     ->schema([

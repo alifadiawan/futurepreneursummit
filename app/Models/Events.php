@@ -10,6 +10,7 @@ class Events extends Model
 
     protected $casts = [
         'highlights' => 'array',
+        'speakers' => 'array',
     ];
 
     protected $guarded = [];    

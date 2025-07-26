@@ -1,8 +1,5 @@
 import React from 'react'
 import Guest from './Layout/Guest'
-import logo from '../../../public/Logo-FEST-LIGHT.png';
-import bgImage from '../../../public/bg-2.jpg';
-// import bgImage from '../assets/bg-konser.png';
 import { motion } from "framer-motion";
 
 import AboutUsSection from './Sections/AboutUsSection';
@@ -11,7 +8,6 @@ import GrandSummitSection from './Sections/GrandSummitSection';
 import OurEvents from './Sections/OurEvents';
 
 import LogoSlider from './Components/LogoSlider';
-import VideoBackground from './Components/VideoBackground';
 import PortfolioSection from './Sections/PortfolioSection';
 import HeroSection from './Sections/HeroSection'
 import FuturecompetitionSection from './Sections/FuturecompetitionSection';

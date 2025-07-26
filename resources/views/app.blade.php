@@ -14,7 +14,7 @@
     @inertia
 </body>
 
-<script>
+{{-- <script>
     let velocity = 0;
     let isTicking = false;
 
@@ -38,7 +38,7 @@
             isTicking = false;
         }
     }
-</script>
+</script> --}}
 
 
 
