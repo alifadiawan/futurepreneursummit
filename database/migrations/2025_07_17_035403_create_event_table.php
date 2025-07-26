@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,12 +13,14 @@ return new class extends Migration
         Schema::create('event', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('location');
-            $table->string('date');
-            $table->string('subtitle');
-            $table->string('imageUrl')->nullable();
+            $table->date('date');
+            $table->string('time');
+            $table->string('subtitle')->nullable();
+            $table->text('description');
             $table->string('imagePath')->nullable();
-            $table->string('featured_guest_star');
+            $table->json('highlights')->nullable();
             $table->string('status')->default('upcoming');
             $table->timestamps();
         });

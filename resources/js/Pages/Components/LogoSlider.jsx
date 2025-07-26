@@ -1,9 +1,10 @@
 import React from 'react';
-import brand1 from '../../../../public/brands/width_200.webp'
-import brand2 from '../../../../public/brands/brands2.webp'
-import brand3 from '../../../../public/brands/brands3.webp'
-import brand4 from '../../../../public/brands/brand4.png'
-import brand5 from '../../../../public/brands/brand4.webp'
+
+import brand1 from '../../../../public/brands/LOGO-1.png'
+import brand2 from '../../../../public/brands/LOGO-2.png'
+import brand3 from '../../../../public/brands/LOGO-3.png'
+import brand4 from '../../../../public/brands/LOGO-4.png'
+import brand5 from '../../../../public/brands/LOGO-5.png'
 
 const logos = [
     { src: brand1, alt: "Brand 1" },
@@ -19,71 +20,118 @@ const logos = [
 ];
 
 const LogoSlider = () => {
+    const extendedLogos = [...logos, ...logos, ...logos, ...logos];
+
     return (
         <>
-            {/* This style block injects the custom animation keyframes into Tailwind CSS.
-              It's a neat way to keep component-specific styles self-contained.
-            */}
             <style>
                 {`
-                @keyframes slide-left {
-                    0% {
+                @keyframes slide-infinite {
+                    from {
                         transform: translateX(0);
                     }
-                    100% {
-                        transform: translateX(-100%);
+                    to {
+                        transform: translateX(-${logos.length * 200}px);
                     }
                 }
-                .animate-slide-left {
-                    animation: slide-left 30s linear infinite;
+
+                .animate-slide-infinite {
+                    animation: slide-infinite 20s linear infinite;
+                    will-change: transform;
+                }
+
+                .slider-container:hover .animate-slide-infinite {
+                    animation-play-state: paused;
+                }
+
+                /* Smooth fade edges */
+                .fade-edges {
+                    -webkit-mask-image: linear-gradient(
+                        to right,
+                        transparent,
+                        black 10%,
+                        black 100%,
+                        transparent
+                    );
+                    mask-image: linear-gradient(
+                        to right,
+                        transparent,
+                        black 10%,
+                        black 100%,
+                        transparent
+                    );
+                }
+
+                /* Hover effects for individual logos */
+                .logo-item {
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    filter: grayscale(0.3) opacity(0.8);
+                }
+
+                .logo-item:hover {
+                    filter: grayscale(0) opacity(1);
+                    transform: scale(1.1);
+                }
+
+                /* Add subtle glow effect */
+                .logo-glow {
+                    position: relative;
+                }
+
+                .logo-glow::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 120%;
+                    height: 120%;
+                    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    pointer-events: none;
+                    z-index: -1;
+                }
+
+                .logo-item:hover .logo-glow::after {
+                    opacity: 1;
                 }
                 `}
             </style>
 
-            <section className="bg-white py-12">
-                <div className="container mx-auto px-4">
-                    {/* <h2 className="text-center text-3xl font-bold text-gray-800 mb-2">
-                        Trusted by the World's Most Innovative Teams
-                    </h2>
-                    <p className="text-center text-lg text-gray-500 mb-10">
-                        Our partners and clients are at the forefront of their industries.
-                    </p> */}
+            <section className="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-12 lg:py-0 antialiased overflow-hidden">
+                <div className=" mx-auto px-4">
 
-                    {/* The mask-image provides the fade-out effect on the left and right edges,
-                      making the continuous loop appear more natural.
-                    */}
-                    <div
-                        className="group relative overflow-hidden whitespace-nowrap py-4"
-                        style={{
-                            maskImage: 'linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%)',
-                            WebkitMaskImage: 'linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%)',
-                        }}
-                    >
-                        <div className="flex w-max animate-slide-left group-hover:pause-animation">
-
-                            {/* First set of logos */}
-                            {logos.map((logo, index) => (
-                                <div key={`logo-${index}`} className="mx-12 flex-shrink-0">
-                                    <img
-                                        className="h-24 w-auto object-contain"
-                                        src={logo.src}
-                                        alt={logo.alt}
-                                    />
-                                </div>
-                            ))}
-
-                            {/* Second set of logos (for the seamless loop) */}
-                            {logos.map((logo, index) => (
-                                <div key={`logo-duplicate-${index}`} className="mx-12 flex-shrink-0">
-                                    <img
-                                        className="h-24 w-auto object-contain"
-                                        loading='lazy'
-                                        src={logo.src}
-                                        alt={logo.alt}
-                                    />
-                                </div>
-                            ))}
+                    {/* Logo Slider */}
+                    <div className="slider-container relative">
+                        <div className="fade-edges overflow-hidden whitespace-nowrap">
+                            <div className="flex animate-slide-infinite">
+                                {extendedLogos.map((logo, index) => (
+                                    <div
+                                        key={`${logo.alt}-${index}`}
+                                        className="logo-item flex-shrink-0 flex items-center justify-center mx-12"
+                                        style={{ width: '200px' }}
+                                    >
+                                        <img
+                                            className="h-24 lg:h-48 w-auto object-contain max-w-full"
+                                            src={logo.src}
+                                            alt={logo.alt}
+                                            width="160"
+                                            height="64"
+                                            loading="lazy"
+                                            decoding="async"
+                                            onError={(e) => {
+                                                e.target.style.display = 'none';
+                                            }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
+
+                        {/* Subtle gradient overlays for better visual flow */}
+                        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-50 to-transparent pointer-events-none z-10"></div>
+                        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-50 to-transparent pointer-events-none z-10"></div>
                     </div>
                 </div>
             </section>

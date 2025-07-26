@@ -2,12 +2,13 @@ import React from 'react'
 import { motion } from "framer-motion"
 import PixelTransition from '../Components/PixelTransition';
 
-import golda from '../../../../public/organizations/unair.png';
-import wardah from '../../../../public/organizations/its.png';
-import pandalovely from '../../../../public/organizations/uinsa.png';
-import miesedap from '../../../../public/organizations/upn.png';
-import kahf from '../../../../public/organizations/its.png';
-import bening from '../../../../public/organizations/umm.png';
+import unair from '../../../../public/organizations/unair.webp';
+import its from '../../../../public/organizations/its.webp';
+import unesa from '../../../../public/organizations/unesa.webp';
+import upn from '../../../../public/organizations/upn.webp';
+import umm from '../../../../public/organizations/umm.webp';
+import uinsa from '../../../../public/organizations/uinsa.webp';
+
 
 const OrganizationsSection = () => {
   return (
@@ -24,7 +25,7 @@ const OrganizationsSection = () => {
       {/* THEME CHANGE: Added a semi-transparent white overlay to ensure text readability over the background image. */}
       <div className="absolute inset-0 bg-white"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+      <div className="container mx-auto lg:px-24 px-6 relative z-10">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,39 +53,39 @@ const OrganizationsSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 justify-center gap-3 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 justify-center gap-3 w-full">
           <PixelTransition
-            imageUrl={golda}
+            imageUrl={unair}
             title="Futurepreneur National Competition"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={wardah}
+            imageUrl={its}
             title="Futurepreneur Grand Summit Seminar"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={pandalovely}
+            imageUrl={unesa}
             title="Futurepreneur Online Webinar Soft Skill"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={kahf}
+            imageUrl={upn}
             title="Futurepreneur Bootcamp Soft Skill Training"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={miesedap}
+            imageUrl={umm}
             title="Futurepreneur International Program"
             ctaText="More"
             ctaLink="#"
           />
           <PixelTransition
-            imageUrl={bening}
+            imageUrl={uinsa}
             title="Futurepreneur International Program"
             ctaText="More"
             ctaLink="#"

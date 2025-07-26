@@ -12,6 +12,22 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Set;
+
+
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\BadgeColumn;
+
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Illuminate\Support\Str;
+
 
 class EventsResource extends Resource
 {
@@ -23,19 +39,56 @@ class EventsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\TextInput::make('location')->required(),
-                Forms\Components\DatePicker::make('date')->required(),
-                Forms\Components\TextInput::make('subtitle'),
-                Forms\Components\TextInput::make('imageUrl'),
-                Forms\Components\FileUpload::make('imagePath'),
-                Forms\Components\TextInput::make('featured_guest_star'),
-                Forms\Components\Select::make('status')
+                TextInput::make('title')
+                    ->required()
+                    ->maxLength(255)
+                    ->live()
+                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+
+                TextInput::make('slug')
+                    ->required()
+                    ->maxLength(255)
+                    ->dehydrated(true)
+                    ->disabled(),
+
+                TextInput::make('location')
+                    ->required()
+                    ->maxLength(255),
+
+                DatePicker::make('date')
+                    ->displayFormat('d F Y')
+                    ->required(),
+
+                TimePicker::make('time')
+                    ->required(),
+
+                TextInput::make('subtitle')
+                    ->maxLength(255),
+
+                RichEditor::make('description')
+                    ->required(),
+
+                FileUpload::make('imagePath')
+                    ->directory('events') // optional: set directory
+                    ->image()
+                    ->imageEditor() // optional: allows basic cropping, etc.
+                    ->maxSize(2048), // optional: 2MB limit
+
+                Repeater::make('highlights')
+                    ->schema([
+                        TextInput::make('value')->label('Highlight'),
+                    ])
+                    ->label('Event Highlights')
+                    ->columns(1),
+
+                Select::make('status')
                     ->options([
                         'Upcoming' => 'Upcoming',
-                        'Draft' => 'Draft',
-                        'Published' => 'Published',
-                    ])->required()
+                        'Available' => 'Available',
+                        'Done' => 'Done',
+                    ])
+                    ->default('upcoming')
+                    ->required(),
             ]);
     }
 
@@ -43,17 +96,47 @@ class EventsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->searchable(),
-                Tables\Columns\TextColumn::make('location')->searchable(),
-                Tables\Columns\TextColumn::make('date')->searchable(),
-                Tables\Columns\ImageColumn::make('imagePath'),
-                Tables\Columns\IconColumn::make('status')
-                    ->color(fn(string $state): string => match ($state) {
-                        'Upcoming' => 'info',
-                        'Draft' => 'warning',
-                        'Published' => 'success',
-                        default => 'gray',
-                    }),
+                TextColumn::make('title')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(30),
+
+                TextColumn::make('location')
+                    ->sortable()
+                    ->limit(20),
+
+                TextColumn::make('date')
+                    ->sortable()
+                    ->date(),
+
+                TextColumn::make('time')
+                    ->sortable(),
+
+                TextColumn::make('subtitle')
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('description')
+                    ->limit(50)
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                ImageColumn::make('imagePath')
+                    ->label('Image')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('highlights')
+                    ->label('Highlights')
+                    ->formatStateUsing(fn($state) => is_array($state) ? implode(', ', $state) : $state)
+                    ->limit(40)
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                BadgeColumn::make('status')
+                    ->colors([
+                        'info' => 'Upcoming',
+                        'success' => 'Available',
+                        'gray' => 'Done',
+                    ])
+                    ->sortable(),
             ])
             ->filters([
                 //

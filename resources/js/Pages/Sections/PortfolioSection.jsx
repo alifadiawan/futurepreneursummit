@@ -31,8 +31,8 @@ const portfolioData = [
     },
     {
         id: 3,
-        title: 'Nature Photography Blog',
-        youtubeUrl: 'https://www.youtube.com/embed/ysz5S6PUM-U',
+        title: 'Future Entrepreneur Summit - Surabaya (Surabaya Creativepreneur Festival 2023)',
+        youtubeUrl: 'https://www.youtube.com/embed/aCwcJZYmDu0?si=29I9WcK1FirIvKfA',
         tags: ['Gatsby', 'GraphQL', 'Contentful', 'Styled-Components'],
     },
 ];
@@ -73,10 +73,10 @@ const PortfolioSection = () => {
 
     return (
         <section
-            className="text-gray-800 py-16 px-4 sm:px-6 lg:px-8 font-sans"
+            className="text-gray-800 py-16  font-sans"
             style={abstractBgStyle}
         >
-            <div className="max-w-7xl mx-auto">
+            <div className="container mx-auto lg:px-24 px-6">
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -96,10 +96,10 @@ const PortfolioSection = () => {
 
                 {/* Show More Button */}
                 <div className="mt-12 text-center">
-                    <button className="group inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+                    {/* <button className="group inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
                         Show More
                         <ArrowRight />
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import dayjs from 'dayjs';
 
 // --- Mock Data ---
 // This now serves as default data. In a real Inertia.js application,
@@ -71,27 +72,34 @@ const Arrow = ({ direction, onClick }) => (
 
 // --- Event Card Component ---
 // Now accepts individual props for better reusability.
-const EventCard = ({ title, date, location, featured_guest_star, subtitle, imageUrl }) => {
+const EventCard = ({ title, date, location, subtitle, imagePath, status, slug }) => {
+    const formattedDate = date ? dayjs(date).format('D MMMM YYYY') : 'Tanggal tidak tersedia';
+
     // A simple helper to split the date string for styling.
-    const [dateNum, ...dateMonth] = date.split(' ');
+    const [dateNum, ...dateMonth] = formattedDate.split(' ');
 
     return (
         <div className="flex-shrink-0 w-full">
-            <div className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-full">
-                <div className="relative flex-grow text-white" style={{ aspectRatio: '9 / 12' }}>
+            <div className="bg-gray-900 rounded-3xl  overflow-hidden flex flex-col h-full">
+                <div
+                    className="relative flex-grow text-white"
+                    style={{ aspectRatio: '210 / 297' }} // or '7 / 10', or '2 / 3' for simplified ratio
+                >
                     <img
-                        src={imageUrl}
+                        src={`/storage/${imagePath}`}
                         alt={title}
                         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x800/333/FFF?text=Image+Error'; }}
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://placehold.co/600x800/333/FFF?text=Image+Error';
+                        }}
                     />
-                   
                 </div>
                 <div className="p-4 bg-gray-800/50 backdrop-blur-sm border-t border-white/10 text-white">
                     <header className="flex justify-between items-start mb-5">
                         <h3 className="font-extrabold text-2xl uppercase tracking-wider drop-shadow-lg">{location}</h3>
                         <div className="text-center">
-                            <p className="font-bold text-xl drop-shadow-md">FES<span className="text-purple-400">t</span></p>
+                            <p className="font-bold text-md bg-green-600 rounded-full px-4">{status}</p>
                         </div>
                     </header>
                     <div className="flex-grow"></div>
@@ -106,15 +114,13 @@ const EventCard = ({ title, date, location, featured_guest_star, subtitle, image
                                 <p className="text-sm text-gray-300">{subtitle}</p>
                             </div>
                         </div>
-                        <div className="text-left mb-5">
-                            <div className="text-sm font-semibold bg-black/30 py-1 px-3 rounded-md inline-block">
-                                With: <span className="font-bold">{featured_guest_star}</span>
-                            </div>
-                        </div>
                     </footer>
-                    <button className="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <a
+                        href={route('event.detail', slug)}
+                        className="block text-center bg-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105"
+                    >
                         DAFTAR
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
